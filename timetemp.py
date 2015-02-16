@@ -16,7 +16,8 @@
 from __future__ import print_function
 from Adafruit_Thermal import *
 from xml.dom.minidom import parseString
-import Image, ImageDraw, time, urllib
+from PIL import Image, ImageDraw
+import time, urllib
 
 # WOEID indicates the geographic location for the forecast.  It is
 # not a ZIP code or other common indicator.  Instead, it can be found
@@ -162,6 +163,8 @@ if windUnits == 'kph': img.paste(Kph, (x, y))
 else:                  img.paste(Mph, (x, y))
 
 # Open connection to printer and print image
-printer = Adafruit_Thermal("/dev/ttyAMA0", 19200, timeout=5)
+printer = Adafruit_Thermal("/dev/tty.usbserial", 19200, timeout=5)
+# printer.begin(255)
+# printer.println(150)                 # Print heat time
 printer.printImage(img, True)
 printer.feed(3)

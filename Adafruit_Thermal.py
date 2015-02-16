@@ -50,7 +50,7 @@ class Adafruit_Thermal(Serial):
 	lineSpacing     =  8
 	barcodeHeight   = 50
 	printMode       =  0
-	defaultHeatTime = 60
+	defaultHeatTime = 130 
 
 	def __init__(self, *args, **kwargs):
 		# If no parameters given, use default port & baud rate.
@@ -459,7 +459,7 @@ class Adafruit_Thermal(Serial):
 	# the Imaging Library to perform such operations before
 	# passing the result to this function.
 	def printImage(self, image, LaaT=False):
-		import Image
+		from PIL import Image
 
 		if image.mode != '1':
 			image = image.convert('1')
